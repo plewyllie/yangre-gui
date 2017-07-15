@@ -97,7 +97,7 @@ function match_patterns() {
                         + '</div>')
                 console.log('#'+rand_div)
                 console.log(alerts_div)
-                $('#'+rand_div).append(alerts_div)
+                $('#'+rand_div).html(alerts_div)
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
