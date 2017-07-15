@@ -17,6 +17,9 @@ def yangre():
         #f.write(str(subprocess.run(["./yangre", "1"]).returncode))
     #print (config.YANGGRE_PATH + " -p " + "\"" + str(request.form['pattern']) +  "\" " + "\""+ str(request.form['content'] + "\""));
     #return jsonify({'result': "1"})
-    return jsonify({'result': subprocess.run([config.YANGGRE_PATH,
+    print(config.YANGGRE_PATH,
                        " -p ", "\"" + str(request.form['pattern']) +  "\" ",
+                       "\""+ str(request.form['content'] + "\""))
+    return jsonify({'result': subprocess.run([config.YANGGRE_PATH,
+                       "-p", "\"" + str(request.form['pattern']) +  "\"",
                        "\""+ str(request.form['content'] + "\"")]).returncode });
