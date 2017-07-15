@@ -74,7 +74,7 @@ function match_patterns() {
                     $('#teststring-textbox').css("background-color", "#fcf8e3");
                     current_textbox.css("background-color", "#fcf8e3");
                 }
-                $('#result_alerts').append('<h3>Pattern ' + patternnb + ' results');
+                alerts_div += ('<h3>Pattern ' + patternnb + ' results');
                 //alert(current_textbox.val());
                 if (data.w3cgrep_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
@@ -102,7 +102,7 @@ function match_patterns() {
         alerts_div += ('<div class="alert alert-warning" role="alert">'
             + 'Not all patterns are matching'
             + '</div>');
-    $('#result_alerts').append(alerts_div)
+    $('#result_alerts').replaceWith(alerts_div)
 }
 
 </script>
