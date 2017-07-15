@@ -74,19 +74,19 @@ function match_patterns() {
                 }
                 $('#result_alerts').append('<h3>Pattern ' + patternnb + ' results');
                 //alert(current_textbox.val());
-                if (data.w3cgrep_result == 1)
+                if (data.w3cgrep_result == 0)
                     $('#result_alerts').append('<div class="alert alert-success" role="alert">'
                     + '<b>W3CGREP</b> matches'
                     + '</div>')
-                else if (data.w3cgrep_result == 0)
+                else if (data.w3cgrep_result == 1)
                     $('#result_alerts').append('<div class="alert alert-danger" role="alert">'
                         + '<b>W3CGREP</b> does not match'
                         + '</div>')
-                if (data.yangre_result == 1)
+                if (data.yangre_result == 0)
                     $('#result_alerts').append('<div class="alert alert-success" role="alert">'
                     + '<b>YANGRE</b> matches'
                     + '</div>')
-                else if (data.yangre_result == 0)
+                else if (data.yangre_result == 1)
                     $('#result_alerts').append('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
