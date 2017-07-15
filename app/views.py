@@ -24,9 +24,9 @@ def yangre():
 
     w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"], stdout=subprocess.PIPE)
     if not w3c_input_obj.stdout:
-        w3c_input_result = 0
-    else:
         w3c_input_result = 1
+    else:
+        w3c_input_result = 0
 
     print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
 
