@@ -46,7 +46,7 @@ $('#pattern_inputs').on('input', '.pattern-textbox', function() {
 });
 
 function match_patterns() {
-    $('#result_alerts').empty('');
+    $('#result_alerts').empty();
     var rand_div = Math.random() * 100000000000000000;
     $('#data-divs').html('<div id="' + rand_div + '"></div>')
     var numberofpatterns = 0;
@@ -96,6 +96,12 @@ function match_patterns() {
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
                 $('#'+rand_div).html(alerts_div)
+                $('#result_alerts').empty();
+                if (correct_patterns < numberofpatterns)
+                    alerts_div = ('<div class="alert alert-warning" role="alert">'
+                        + 'Not all patterns are matching'
+                        + '</div>');
+                $('#'+rand_div).append(alerts_div)
                 $('#result_alerts').html($('#'+rand_div).html())
             },
             error: function(jqXHR, textStatus, errorThrown) {
