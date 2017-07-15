@@ -96,6 +96,7 @@ function match_patterns() {
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
                 $('#'+rand_div).html(alerts_div)
+                $('#result_alerts').html($('#'+rand_div).html())
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
