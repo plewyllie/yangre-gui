@@ -34,7 +34,6 @@ def yangre():
         w3c_input_result = 1
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
-                    'yangre_result' : 0});
-    #return jsonify({'result': subprocess.run([config.YANGGRE_PATH,
-    #                   "-p", "\"" + str(request.form['pattern']) +  "\"",
-    #                   "\""+ str(request.form['content'] + "\"")]).returncode });
+                    'yangre_result' : subprocess.run([config.YANGGRE_PATH,
+                       "-p", "\"" + str(request.form['pattern']) +  "\"",
+                       "\""+ str(request.form['content'] + "\"")]).returncode });
