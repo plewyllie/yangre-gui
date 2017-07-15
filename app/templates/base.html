@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>YANGRE</title>
+    {% endif %}
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/sticky-footer.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+    // Add script
+    </script>
+</head>
+<body>
+    <div class="container">
+    <div class="page-header">
+        <h3>Yang Re</h3>
+    </div>
+    </div>
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Using yangre in the backend. From https://github.com/CESNET/libyang </p>
+        </div>
+    </footer>
+
+</body>
+</html>
