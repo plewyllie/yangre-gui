@@ -28,9 +28,9 @@ def yangre():
     else:
         w3c_input_result = 1
 
-    print (config.YANGGRE_PATH, "-p", "\"" + str(request.form['pattern']) +  "\"", "\""+ str(request.form['content'] + "\""))
+    print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
                     'yangre_result' : subprocess.run([config.YANGGRE_PATH,
-                       "-p", "\"" + str(request.form['pattern']) +  "\"",
-                       "\""+ str(request.form['content'] + "\"")]).returncode });
+                       "-p", str(request.form['pattern']),
+                       str(request.form['content'])]).returncode });
