@@ -36,15 +36,24 @@ $('#add_pattern_btn').bind('click', function() {
         + '</div>');
 });
 
+matching_patterns = false
 $('#teststring-textbox').on('change keyup paste', function() {
-    match_patterns();
+    if (!matching_patterns)
+        match_patterns();
 });
 $('#pattern_inputs').on('input', '.pattern-textbox', function() {
-    match_patterns();
+    if (!matching_patterns)
+        match_patterns();
 });
 
-function match_patterns() {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function match_patterns() {
+    matching_patterns = true
     $('#result_alerts').empty();
+    await sleep(1000);
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
@@ -100,6 +109,8 @@ function match_patterns() {
         $('#result_alerts').append('<div class="alert alert-warning" role="alert">'
             + 'Not all patterns are matching'
             + '</div>');
+
+    matching_patterns = false
 }
 
 </script>
