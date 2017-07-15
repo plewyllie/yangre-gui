@@ -19,4 +19,4 @@ def yangre():
     #return jsonify({'result': "1"})
     return jsonify({'result': subprocess.run([config.YANGGRE_PATH,
                        " -p ", "\"" + str(request.form['pattern']) +  "\" ",
-                       "\""+ str(request.form['content'] + "\"")]).returnvalue });
+                       "\""+ str(request.form['content'] + "\"")]).returncode });
