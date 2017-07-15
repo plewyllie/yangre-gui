@@ -38,26 +38,18 @@ $('#add_pattern_btn').bind('click', function() {
 
 matching_patterns = false
 $('#teststring-textbox').on('change keyup paste', function() {
-    console.log(matching_patterns)
-    if (!matching_patterns)
-        match_patterns();
+    match_patterns();
 });
 $('#pattern_inputs').on('input', '.pattern-textbox', function() {
-    console.log(matching_patterns)
-    if (!matching_patterns)
-        match_patterns();
+    match_patterns();
 });
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function match_patterns() {
-    matching_patterns = true
     $('#result_alerts').empty();
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
+    var alerts_div = "";
     $('.pattern-textbox').each(function() {
         var current_textbox = $(this);
         numberofpatterns++;
@@ -85,22 +77,21 @@ function match_patterns() {
                 $('#result_alerts').append('<h3>Pattern ' + patternnb + ' results');
                 //alert(current_textbox.val());
                 if (data.w3cgrep_result == 0)
-                    $('#result_alerts').append('<div class="alert alert-success" role="alert">'
+                    alerts_div += ('<div class="alert alert-success" role="alert">'
                     + '<b>W3CGREP</b> matches'
                     + '</div>')
                 else if (data.w3cgrep_result == 1)
-                    $('#result_alerts').append('<div class="alert alert-danger" role="alert">'
+                    alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>W3CGREP</b> does not match'
                         + '</div>')
                 if (data.yangre_result == 0)
-                    $('#result_alerts').append('<div class="alert alert-success" role="alert">'
+                    alerts_div += ('<div class="alert alert-success" role="alert">'
                     + '<b>YANGRE</b> matches'
                     + '</div>')
                 else if (data.yangre_result == 1)
-                    $('#result_alerts').append('<div class="alert alert-danger" role="alert">'
+                    alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
-                matching_patterns = false
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
@@ -108,9 +99,10 @@ function match_patterns() {
         });
     });
     if (correct_patterns < numberofpatterns)
-        $('#result_alerts').append('<div class="alert alert-warning" role="alert">'
+        alerts_div += ('<div class="alert alert-warning" role="alert">'
             + 'Not all patterns are matching'
             + '</div>');
+    $('#result_alerts').append(alerts_div)
 }
 
 </script>
