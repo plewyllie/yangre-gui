@@ -20,3 +20,11 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.footer-text {
+    float: left;
+}
+.footer-image {
+    float: right;
+    padding-top: 15px;
+}
