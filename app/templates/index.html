@@ -45,7 +45,7 @@ $('#pattern_inputs').on('input', '.pattern-textbox', function() {
 });
 
 function match_patterns() {
-    $('#result_alerts').empty();
+    $('#result_alerts').val('');
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
@@ -74,7 +74,7 @@ function match_patterns() {
                     $('#teststring-textbox').css("background-color", "#fcf8e3");
                     current_textbox.css("background-color", "#fcf8e3");
                 }
-                alerts_div += ('<h3>Pattern ' + patternnb + ' results');
+                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
                 //alert(current_textbox.val());
                 if (data.w3cgrep_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
