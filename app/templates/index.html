@@ -38,10 +38,12 @@ $('#add_pattern_btn').bind('click', function() {
 
 matching_patterns = false
 $('#teststring-textbox').on('change keyup paste', function() {
+    console.log(matching_patterns)
     if (!matching_patterns)
         match_patterns();
 });
 $('#pattern_inputs').on('input', '.pattern-textbox', function() {
+    console.log(matching_patterns)
     if (!matching_patterns)
         match_patterns();
 });
