@@ -95,8 +95,7 @@ function match_patterns() {
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
-                alert(rand_div);
-                $('#result_alerts').append(alerts_div)
+                $('#'+rand_div).append(alerts_div)
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
@@ -108,7 +107,8 @@ function match_patterns() {
         alerts_div += ('<div class="alert alert-warning" role="alert">'
             + 'Not all patterns are matching'
             + '</div>');
-    $('#result_alerts').append(alerts_div)
+    $('#'+rand_div).append(alerts_div)
+    $('#result_alerts').html($('#'+rand_div).val())
 }
 
 </script>
