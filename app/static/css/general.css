@@ -5,3 +5,7 @@
 .lead {
     margin: 10px;
 }
+
+#data-divs {
+    display: none;
+}

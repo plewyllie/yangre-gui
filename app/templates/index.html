@@ -24,6 +24,7 @@
         </div>
     </div>
     <div id="result_alerts"></div>
+    <div id="data-divs"></div>
 </div>
 
 
@@ -45,7 +46,9 @@ $('#pattern_inputs').on('input', '.pattern-textbox', function() {
 });
 
 function match_patterns() {
-    $('#result_alerts').html('');
+    $('#result_alerts').empty('');
+    var rand_div = Math.random() * 1000;
+    $('#data-divs').html('<div id="' + rand_div + '"></div>')
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
@@ -92,7 +95,7 @@ function match_patterns() {
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
-
+                alert(rand_div);
                 $('#result_alerts').append(alerts_div)
             },
             error: function(jqXHR, textStatus, errorThrown) {
