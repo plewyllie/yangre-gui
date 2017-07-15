@@ -96,12 +96,13 @@ function match_patterns() {
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
 
-                if (correct_patterns < numberofpatterns)
+                if (result != 0) {
                     if (!($('#nomatch_warn').length)) {
                         $('#'+rand_div).append('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
                             + 'Not all patterns are matching'
                             + '</div>')
                     }
+                }
                 $('#'+rand_div).append(alerts_div)
                 $('#result_alerts').empty();
                 $('#result_alerts').html($('#'+rand_div).html())
