@@ -95,7 +95,8 @@ function match_patterns() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
-            }
+            },
+            async: false
         });
     });
     if (correct_patterns < numberofpatterns)
