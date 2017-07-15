@@ -49,7 +49,6 @@ function match_patterns() {
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
-    var alerts_div = "";
     $('.pattern-textbox').each(function() {
         var current_textbox = $(this);
         numberofpatterns++;
@@ -61,6 +60,7 @@ function match_patterns() {
                 content: $('#teststring-textbox').val()
             },
             success: function(data) {
+                var alerts_div = "";
                 patternnb++;
                 var result = data.w3cgrep_result + data.yangre_result
                 if (result == 0) { // success, green background
@@ -92,18 +92,20 @@ function match_patterns() {
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
+
+                $('#result_alerts').append(alerts_div)
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
             },
         });
-        $('#result_alerts').replaceWith(alerts_div)
+
     });
     if (correct_patterns < numberofpatterns)
         alerts_div += ('<div class="alert alert-warning" role="alert">'
             + 'Not all patterns are matching'
             + '</div>');
-    $('#result_alerts').replaceWith(alerts_div)
+    $('#result_alerts').append(alerts_div)
 }
 
 </script>
