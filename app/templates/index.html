@@ -95,12 +95,15 @@ function match_patterns() {
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
                         + '</div>')
+
+                if (correct_patterns < numberofpatterns)
+                    if (!($('#nomatch_warn').length)) {
+                        $('#'+rand_div).append('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
+                            + 'Not all patterns are matching'
+                            + '</div>')
+                    }
                 $('#'+rand_div).append(alerts_div)
                 $('#result_alerts').empty();
-                if (correct_patterns < numberofpatterns)
-                    $('#'+rand_div).append('<div class="alert alert-warning" role="alert">'
-                        + 'Not all patterns are matching'
-                        + '</div>')
                 $('#result_alerts').html($('#'+rand_div).html())
             },
             error: function(jqXHR, textStatus, errorThrown) {
