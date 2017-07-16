@@ -47,6 +47,7 @@ $("#pattern_inputs_buttons").on('click', '#remove_pattern_btn', function () {
     $('#pattern-input-'+patterncnt).remove();
     if (patterncnt == 2)// remove the - btn
         $("#remove_pattern_btn").css('display', 'none');
+    match_patterns();
 });
 
 matching_patterns = false
