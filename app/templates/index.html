@@ -136,8 +136,7 @@ function match_patterns() {
                 alerts_div = "";
                 alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
                 alerts_div += ('<div class="alert alert-warning" role="alert">' +
-                    + '<p><b>Server ERROR 500</b>' +
-                    + "Status = " + textStatus + ", " + "error thrown: " + errorThrown + '</p>'
+                    + "<p>Server ERROR: Status = " + textStatus + ", " + "error thrown: " + errorThrown + '</p>'
                     + '</div>');
                 $('#'+rand_div).append(alerts_div);
                 $('#result_alerts').empty();
