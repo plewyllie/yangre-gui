@@ -23,8 +23,6 @@ def yangre():
     if not w3c_input_obj.stdout:
         w3c_input_result = 1
     else:
-        if w3c_input_obj.returncode == 1:
-            w3c_input_result = -1 # I used -1 as error code
         w3c_input_result = 0
 
     yangre_input_obj = {}
@@ -42,6 +40,8 @@ def yangre():
                                           str(request.form['content'])],
                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
 
+    if w3c_input_obj.returncode == 1:
+        w3c_input_result = -1 # I used -1 as error code
 
     print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
     #print (config.W3CGREP_PATH, str(request.form['pattern']), )
