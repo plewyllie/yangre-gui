@@ -1,5 +1,7 @@
 # yangre-gui
-Building a web UI for the yangre tool
 
-The idea of YANG RE is a GUI to do W3C-compliant regex validation so that one can be sure their regexs will work in YANG models.
-This was a major issue that Openconfig had is that while there were a number of POSIX/Perl validators, there wasn't a W3C one.
+The yangre-gui was built for the [IETF 99 Hackathon](https://www.ietf.org/hackathon/99-hackathon.html)
+
+The idea behind yangre-gui is to build a GUI on top of W3C-compliant regex validators like w3cgrep and yangre (one of the tools from the [libyang](https://github.com/CESNET/libyang)) so that one can be sure their regexs will work in YANG models.
+
+For context, this was a major issue that Openconfig had. While there were a number of POSIX/Perl validators like regex101.com, there wasn't a W3C one.
