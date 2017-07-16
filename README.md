@@ -8,9 +8,9 @@ For context, this was a major issue that Openconfig had. While there were a numb
 
 ## Getting Started
 
-After cloning the project, configure `config.py` with the appropriate paths for the yangre and w3cgrep executables. I had some issues with yangre not finding the right library files, so I included an explicit path to the library, feel free to remove or customize this as needed.
+After cloning the project, configure `config.py` with the appropriate paths for the yangre and w3cgrep executables. I had some issues with yangre not finding the right library files, so I included an explicit path to the library. Feel free to remove or customize this as needed.
 
-you can launch it directly using python with
+Once configured, launch the web GUI simply with
 ```
 python run.py
 ```
@@ -22,3 +22,7 @@ Note that running it like this is not ideal for production, this should be done 
 * Have w3cgrep and yangre installed on the local machine
 * Python 3.5
 * Flask
+
+## Acknowledgments
+
+* Thanks to Joe Clarke, Radek Krejci, all the testers from IETF and especially Benoit Claise for allowing me to participate! :)
