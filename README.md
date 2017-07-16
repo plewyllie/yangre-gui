@@ -15,7 +15,7 @@ Once configured, launch the web GUI simply with
 python run.py
 ```
 
-Note that running it like this is not ideal for production, this should be done using something like nginx.
+Note that this is not ideal for production. For use in a production environment, please use nginx or similar.
 
 ### Prerequisites
 
@@ -25,4 +25,4 @@ Note that running it like this is not ideal for production, this should be done 
 
 ## Acknowledgments
 
-* Thanks to Joe Clarke, Radek Krejci, all the testers from IETF and especially Benoit Claise for allowing me to participate! :)
+Thanks to Joe Clarke, Radek Krejci, all the testers from IETF and especially Benoit Claise for allowing me to participate! :)
