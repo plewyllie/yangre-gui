@@ -38,5 +38,5 @@ def yangre():
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
                     #'w3cgrep_output' : w3c_input_obj.stdout,
-                    'yangre_result' : yangre_input_obj.returncode});
+                    'yangre_result' : yangre_input_obj.returncode,
                     'yangre_output': yangre_input_obj.stdout });
