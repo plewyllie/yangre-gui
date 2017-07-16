@@ -23,6 +23,7 @@ def yangre():
     if not w3c_input_obj.stdout:
         w3c_input_result = 1
     else:
+        print("RETURN CODE W3C", w3c_input_obj.returncode)
         w3c_input_result = 0
 
     yangre_input_obj = {}
