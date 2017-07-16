@@ -151,6 +151,7 @@ function match_patterns() {
                 else if (data.yangre_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
+                        + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
                 else
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
