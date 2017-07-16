@@ -22,24 +22,25 @@ def yangre():
         f.write(request.form['content'])
         f.write("\n")
 
-    #w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"],
-    #                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT);
-    w3c_input_obj = subprocess.getstatusoutput([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"])
-    if not w3c_input_obj[1]:
+    # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
+    # in python 3.6 this changes to encoding='utf8'
+    w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"],
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
+    if not w3c_input_obj.stdout:
         w3c_input_result = 1
     else:
         w3c_input_result = 0
 
-    #yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']),
-    #                                  str(request.form['content'])],
-    #                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT, encoding='utf8');
+    # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
+    # in python 3.6 this changes to encoding='utf8'
+    yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']),
+                                      str(request.form['content'])],
+                                      stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
 
-    yangre_input_obj = subprocess.getstatusoutput([config.YANGGRE_PATH, "-p", str(request.form['pattern']),
-                                                   str(request.form['content'])]);
 
     print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
-                    'w3cgrep_output' : w3c_input_obj[1],
-                    'yangre_result' : yangre_input_obj[0],
-                    'yangre_output': yangre_input_obj[1] });
+                    #'w3cgrep_output' : w3c_input_obj.stdout,
+                    'yangre_result' : yangre_input_obj.returncode,
+                    'yangre_output': yangre_input_obj.stdout });
