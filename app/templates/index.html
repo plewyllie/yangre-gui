@@ -90,7 +90,6 @@ function match_patterns() {
                     $('#teststring-textbox').css("background-color", "#fcf8e3");
                     current_textbox.css("background-color", "#fcf8e3");
                 }
-                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
                 if (result != 0) {
                     if (!($('#nomatch_warn').length)) {
                         $('#'+rand_div).append('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
@@ -98,6 +97,8 @@ function match_patterns() {
                             + '</div>')
                     }
                 }
+                
+                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
 
                 if (data.w3cgrep_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
