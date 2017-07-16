@@ -10,7 +10,10 @@
         <div id="pattern_inputs" class="col-xs-10">
             <div class="input-group pattern-input">
                 <span class="input-group-addon" id="basic-addon1">Pattern 1</span>
-                <input class="pattern-textbox form-control" type="text" placeholder="Example: [0-9a-fA-F]*" aria-describedby="basic-addon1">
+                <input class="pattern-textbox form-control" id="pattern-textbox-1" inverted="false" type="text" placeholder="Example: [0-9a-fA-F]*" aria-describedby="basic-addon1">
+                <div class="input-group-btn">
+                    <button id="invert-pattern-1" type="button" class="btn btn-default">Invert match</button>
+                </div>
             </div>
         </div>
         <div id="pattern_inputs_buttons" class="col-xs-2">
@@ -32,9 +35,13 @@
 <script>
 var patterncnt = 2;
 $('#add_pattern_btn').bind('click', function() {
+    // Add pattern field
     $('#pattern_inputs').append('<div id="pattern-input-'+ patterncnt +'" class="input-group pattern-input">'
-        + '<span class="input-group-addon" id="basic-addon1">Pattern ' + patterncnt + '</span>'
-        + '<input class="pattern-textbox form-control" type="text" placeholder="Example: [0-9a-fA-F]*" aria-describedby="basic-addon1">'
+        + '<span class="input-group-addon" id="basic-addon'+patterncnt+'">Pattern ' + patterncnt + '</span>'
+        + '<input class="pattern-textbox form-control" id="pattern-textbox-'+patterncnt+'" inverted="false" type="text" placeholder="Example: [0-9a-fA-F]*" aria-describedby="basic-addon'+patterncnt+'">'
+        + '<div class="input-group-btn">'
+        + '   <button id="invert-pattern-'+ patterncnt +'" type="button" class="btn btn-default">Invert match</button>'
+        + '</div>'
         + '</div>');
 
     patterncnt++;
@@ -43,46 +50,69 @@ $('#add_pattern_btn').bind('click', function() {
 });
 
 $("#pattern_inputs_buttons").on('click', '#remove_pattern_btn', function () {
+    // Remove pattern field
     patterncnt--;
     $('#pattern-input-'+patterncnt).remove();
     if (patterncnt == 2)// remove the - btn
         $("#remove_pattern_btn").css('display', 'none');
-    match_patterns();
+    match_patterns(); // re-run the matching, to display correct results
 });
 
-matching_patterns = false
+$("#pattern_inputs").on('click', '.btn', function() {
+    // toggle invert match
+    if ($(this).hasClass('btn-default')) {
+        $(this).addClass('btn-info').removeClass('btn-default');
+        $(this).html('Inverted match');
+
+        // setting the pattern to be inverted
+        var patternid = $(this).attr('id').replace("invert-pattern-", "pattern-textbox-");
+        $('#' + patternid).attr("inverted", "true");
+    } else {
+        $(this).addClass('btn-default').removeClass('btn-info');
+        $(this).html('Invert match');
+
+        // setting the pattern to be inverted
+        var patternid = $(this).attr('id').replace("invert-pattern-", "pattern-textbox-");
+        console.log($('#' + patternid))
+        $('#' + patternid).attr("inverted", "false");
+    }
+
+
+});
+
 $('#teststring-textbox').on('change keyup paste', function() {
-    match_patterns();
+    match_patterns(); // call match_patterns everytime a key is entered in textbox
 });
 $('#pattern_inputs').on('input', '.pattern-textbox', function() {
-    match_patterns();
+    match_patterns(); // call match_patterns everytime a key is entered in textbox
 });
 
 function match_patterns() {
-    $('#result_alerts').empty();
+    $('#result_alerts').empty(); // empty the results
+
+    /* generating a random div ID to store information from async AJAX calls */
     var rand_div = Math.random() * 100000000000000000;
     $('#data-divs').html('<div id="' + rand_div + '"></div>');
-    var numberofpatterns = 0;
+
     var patternnb = 0;
-    var correct_patterns = 0;
     $('.pattern-textbox').each(function() {
+        // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
-        numberofpatterns++;
         $.ajax({
             type: "POST",
             url: "/yangre",
             data: {
                 pattern: current_textbox.val(),
-                content: $('#teststring-textbox').val()
+                content: $('#teststring-textbox').val(),
+                inverted: current_textbox.attr('inverted') // inverted match or not
             },
             success: function(data) {
                 var alerts_div = "";
                 patternnb++;
                 var result = data.w3cgrep_result + data.yangre_result
-                if (result == 0) { // success, green background
+                if (result == 0) { // we have a match, green background
                     $('#teststring-textbox').css("background-color", "#dff0d8");
                     current_textbox.css("background-color", "#dff0d8");
-                    correct_patterns++;
                 } else if (result == 2) { // no match, red
                     $('#teststring-textbox').css("background-color", "#f9f2f4");
                     current_textbox.css("background-color", "#f9f2f4");
@@ -90,7 +120,7 @@ function match_patterns() {
                     $('#teststring-textbox').css("background-color", "#fcf8e3");
                     current_textbox.css("background-color", "#fcf8e3");
                 }
-                if (result != 0) {
+                if (result != 0) { // if not all match, add a warning
                     if (!($('#nomatch_warn').length)) {
                         $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
                             + 'Not all patterns are matching'
@@ -98,6 +128,7 @@ function match_patterns() {
                     }
                 }
 
+                // adding outputs in alert zone
                 alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
 
                 if (data.w3cgrep_result == 0)
@@ -128,7 +159,7 @@ function match_patterns() {
                         + '</div>');
 
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').empty();
+                $('#result_alerts').empty(); // empty the results, in case we have other async calls fighting for this space
                 $('#result_alerts').html($('#'+rand_div).html());
             },
             error: function(jqXHR, textStatus, errorThrown) {
