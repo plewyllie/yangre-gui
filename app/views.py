@@ -22,6 +22,7 @@ def yangre():
         f.write(request.form['content'])
         f.write("\n")
 
+    johhny += 1 # test error 500
     # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
     # in python 3.6 this changes to encoding='utf8'
     w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"],
