@@ -22,15 +22,20 @@ def yangre():
         f.write(request.form['content'])
         f.write("\n")
 
-    w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"], stdout=subprocess.PIPE)
+    w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"],
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT);
     if not w3c_input_obj.stdout:
         w3c_input_result = 1
     else:
         w3c_input_result = 0
 
+    yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']),
+                                      str(request.form['content'])], stdout=subprocess.PIPE, stderr=subprocess.STDOUT);
+
+
     print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
-                    'yangre_result' : subprocess.run([config.YANGGRE_PATH,
-                       "-p", str(request.form['pattern']),
-                       str(request.form['content'])]).returncode });
+                    'w3cgrep_output' : w3c_input_obj.stdout,
+                    'yangre_result' : yangre_input_obj.returncode,
+                    'yangre_output': yangre_input_obj.stdout });
