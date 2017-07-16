@@ -1,17 +1,15 @@
 .pattern-input {
     margin-bottom: 10px;
 }
-.button-input-minus {
-    margin-bottom: 10px;
-}
-.button-input-plus {
-    margin-bottom: 10px;
-}
 
 .lead {
     margin: 10px;
 }
 
 #data-divs {
+    display: none;
+}
+
+#remove_pattern_btn {
     display: none;
 }

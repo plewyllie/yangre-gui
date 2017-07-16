@@ -14,7 +14,8 @@
             </div>
         </div>
         <div id="pattern_inputs_buttons" class="col-xs-2">
-            <div class="button-input-plus"><button id="add_pattern_btn" type="button" class="btn btn-default">+</button></div>
+            <button id="add_pattern_btn" type="button" class="btn btn-default">+</button>
+            <button id="remove_pattern_btn" type="button" class="btn btn-default">-</button>
         </div>
         <div class="col-xs-12">
             <div class="form-group">
@@ -35,15 +36,17 @@ $('#add_pattern_btn').bind('click', function() {
         + '<span class="input-group-addon" id="basic-addon1">Pattern ' + patterncnt + '</span>'
         + '<input class="pattern-textbox form-control" type="text" placeholder="Example: [0-9a-fA-F]*" aria-describedby="basic-addon1">'
         + '</div>');
-    $("#pattern_inputs_buttons").append('<div id="button-input-' + patterncnt + '" class="button-input-minus"><button id="add_pattern_btn" type="button" class="btn btn-default">-</button><div/>');
+
     patterncnt++;
+    if (patterncnt > 2)
+        $("#remove_pattern_btn").css('display', 'inline');
 });
 
-$("#pattern_inputs_buttons").on('click', '.button-input-minus', function () {
-    var button_id_to_remove = $(this).attr('id');
-    var pattern_id_to_remove = button_id_to_remove.replace("button", "pattern")
-    $('#'+pattern_id_to_remove).remove();
-    $('#'+button_id_to_remove).remove();
+$("#pattern_inputs_buttons").on('click', '#remove_pattern_btn', function () {
+    patterncnt--;
+    $('#pattern-input-'+patterncnt).remove();
+    if (patterncnt == 2)// remove the - btn
+        $("#remove_pattern_btn").css('display', 'none');
 });
 
 matching_patterns = false
