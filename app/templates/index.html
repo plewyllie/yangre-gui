@@ -87,6 +87,10 @@ function match_patterns() {
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>W3CGREP</b> does not match'
                         + '</div>')
+                else
+                    alerts_div += ('<div class="alert alert-warning" role="alert">'
+                        + '<b>W3CGREP</b> encountered an error'
+                        + '</div>')
                 if (data.yangre_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
                     + '<b>YANGRE</b> matches'
@@ -94,6 +98,10 @@ function match_patterns() {
                 else if (data.yangre_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
+                        + '</div>')
+                else
+                    alerts_div += ('<div class="alert alert-warning" role="alert">'
+                        + '<b>YANGRE</b> encountered an error'
                         + '</div>')
 
                 if (result != 0) {
