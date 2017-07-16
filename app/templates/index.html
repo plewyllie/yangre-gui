@@ -140,6 +140,8 @@ function match_patterns() {
                     + '<p>' + "Status = " + textStatus + ", " + "error thrown: " + errorThrown + '</p>'
                     + '</div>');
                 $('#'+rand_div).append(alerts_div);
+                $('#result_alerts').empty();
+                $('#result_alerts').html($('#'+rand_div).html());
             },
         });
 
