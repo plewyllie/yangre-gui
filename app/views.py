@@ -30,7 +30,7 @@ def yangre():
         w3c_input_result = int(not(w3c_input_result))
         # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
         # in python 3.6 this changes to encoding='utf8'
-        yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-i", "-p", str(request.form['pattern']),
+        yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']), "-i",
                                           str(request.form['content'])],
                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
     else:
@@ -41,7 +41,7 @@ def yangre():
                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
 
 
-    print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
+    #print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
     #print (config.W3CGREP_PATH, str(request.form['pattern']), )
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
