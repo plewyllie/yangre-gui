@@ -61,7 +61,7 @@ $('#pattern_inputs').on('input', '.pattern-textbox', function() {
 function match_patterns() {
     $('#result_alerts').empty();
     var rand_div = Math.random() * 100000000000000000;
-    $('#data-divs').html('<div id="' + rand_div + '"></div>')
+    $('#data-divs').html('<div id="' + rand_div + '"></div>');
     var numberofpatterns = 0;
     var patternnb = 0;
     var correct_patterns = 0;
@@ -94,7 +94,7 @@ function match_patterns() {
                     if (!($('#nomatch_warn').length)) {
                         $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
                             + 'Not all patterns are matching'
-                            + '</div>')
+                            + '</div>');
                     }
                 }
 
@@ -103,41 +103,43 @@ function match_patterns() {
                 if (data.w3cgrep_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
                     + '<b>W3CGREP</b> matches'
-                    + '</div>')
+                    + '</div>');
                 else if (data.w3cgrep_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>W3CGREP</b> does not match'
-                        + '</div>')
+                        + '</div>');
                 else
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
                         + '<b>W3CGREP</b> encountered an error'
                         + '<p>' + data.w3cgrep_output + '</p>'
-                        + '</div>')
+                        + '</div>');
                 if (data.yangre_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
                     + '<b>YANGRE</b> matches'
-                    + '</div>')
+                    + '</div>');
                 else if (data.yangre_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>YANGRE</b> does not match'
-                        + '</div>')
+                        + '</div>');
                 else
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
                         + '<b>YANGRE</b> encountered an error'
                         + '<p>' + data.yangre_output + '</p>'
-                        + '</div>')
+                        + '</div>');
 
-                $('#'+rand_div).append(alerts_div)
+                $('#'+rand_div).append(alerts_div);
                 $('#result_alerts').empty();
-                $('#result_alerts').html($('#'+rand_div).html())
+                $('#result_alerts').html($('#'+rand_div).html());
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 patternnb++;
+                alerts_div = "";
                 alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
                 alerts_div += ('<div class="alert alert-warning" role="alert">' +
                     + '<b>Server ERROR 500</b>' +
                     + '<p>' + "Status = " + textStatus + ", " + "error thrown: " + errorThrown + '</p>'
                     + '</div>');
+                $('#'+rand_div).append(alerts_div);
             },
         });
 
