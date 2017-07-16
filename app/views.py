@@ -39,6 +39,7 @@ def yangre():
 
 
     print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
+    #print (config.W3CGREP_PATH, str(request.form['pattern']), )
 
     return jsonify({'w3cgrep_result' : w3c_input_result,
                     'w3cgrep_output' : w3c_input_obj.stdout,
