@@ -134,10 +134,10 @@ function match_patterns() {
             error: function(jqXHR, textStatus, errorThrown) {
                 patternnb++;
                 alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
-                alerts_div += ('<div class="alert alert-warning" role="alert">'
+                alerts_div += ('<div class="alert alert-warning" role="alert">' +
                     + '<b>Server ERROR 500</b>' +
-                    + '<p>' + "Status = " + textStatus + ", " + "error thrown: " + errorThrown) + '</p>'
-                    + '</div>')
+                    + '<p>' + "Status = " + textStatus + ", " + "error thrown: " + errorThrown + '</p>'
+                    + '</div>');
             },
         });
 
