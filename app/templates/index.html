@@ -92,12 +92,12 @@ function match_patterns() {
                 }
                 if (result != 0) {
                     if (!($('#nomatch_warn').length)) {
-                        $('#'+rand_div).append('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
+                        $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
                             + 'Not all patterns are matching'
                             + '</div>')
                     }
                 }
-                
+
                 alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
 
                 if (data.w3cgrep_result == 0)
