@@ -90,6 +90,7 @@ function match_patterns() {
                 else
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
                         + '<b>W3CGREP</b> encountered an error'
+                        + data.w3cgrep_output
                         + '</div>')
                 if (data.yangre_result == 0)
                     alerts_div += ('<div class="alert alert-success" role="alert">'
@@ -102,6 +103,7 @@ function match_patterns() {
                 else
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
                         + '<b>YANGRE</b> encountered an error'
+                        + data.yangre_output
                         + '</div>')
 
                 if (result != 0) {
