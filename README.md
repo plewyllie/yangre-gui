@@ -7,6 +7,7 @@ It is a GUI on top of W3C-compliant regex validators like w3cgrep and yangre (on
 For context, this was a major issue that Openconfig had. While there were a number of POSIX/Perl validators like regex101.com, there wasn't a W3C one.
 
 See [RFC 7950 section 9.4.5](https://tools.ietf.org/html/rfc7950#section-9.4.5) for details on the YANG regular expressions.
+See [RFC 7950 section 6.1.3](https://tools.ietf.org/html/rfc7950#section-6.1.3) for information on quoting
 
 ## Getting Started
 
