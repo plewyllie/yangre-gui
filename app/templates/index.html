@@ -132,7 +132,12 @@ function match_patterns() {
                 $('#result_alerts').html($('#'+rand_div).html())
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
+                patternnb++;
+                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
+                alerts_div += ('<div class="alert alert-warning" role="alert">'
+                    + '<b>Server ERROR 500</b>' +
+                    + '<p>' + "Status = " + textStatus + ", " + "error thrown: " + errorThrown) + '</p>'
+                    + '</div>')
             },
         });
 
