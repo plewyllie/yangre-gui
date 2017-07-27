@@ -119,9 +119,15 @@ function match_patterns() {
                 }
                 if (result != 0) { // if not all match, add a warning
                     if (!($('#nomatch_warn').length)) {
-                        $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
-                            + 'Not all patterns are matching'
-                            + '</div>');
+                        if ($('.pattern-textbox').length == 1) {
+                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
+                                + 'The pattern is not matching'
+                                + '</div>');
+                        } else {
+                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
+                                + 'Not all patterns are matching'
+                                + '</div>');
+                        }
                     }
                     $('#teststring-textbox').css("background-color", "#fcf8e3");
                 } else {
