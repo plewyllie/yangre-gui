@@ -1,6 +1,6 @@
 # yangre-gui
 
-Yangre-gui is the idea of Benoit Claise and was built for the [IETF 99 Hackathon](https://www.ietf.org/hackathon/99-hackathon.html)
+Yangre-gui is the idea of Benoit Claise and was built by myself for the [IETF 99 Hackathon](https://www.ietf.org/hackathon/99-hackathon.html)
 
 It is a GUI on top of W3C-compliant regex validators like w3cgrep and yangre (one of the tools from  [libyang](https://github.com/CESNET/libyang)) so that one can be sure their regexs will work in YANG models.
 
