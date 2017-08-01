@@ -81,11 +81,11 @@ $("#pattern_inputs").on('click', '.btn', function() {
 });
 
 $('#teststring-textbox').on('change keyup paste', function() {
-    alert('test1');
+    console.log('Got in test tring test box match');
     match_patterns(); // call match_patterns everytime a key is entered in textbox
 });
 $('#pattern_inputs').on('input', function() {
-    alert('test');
+    console.log('Got in pattern input match');
     match_patterns(); // call match_patterns everytime a key is entered in textbox
 });
 
