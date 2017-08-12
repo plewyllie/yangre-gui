@@ -139,17 +139,7 @@ function match_patterns() {
                         + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
 
-                if (number_of_green_patterns == data.pattern_nb) {
-                    // all patterns are matching, show the textbox as green
-                    $('#teststring-textbox').css("background-color", "#dff0d8");
-                } else if (number_of_green_patterns == 0) {
-                    $('#teststring-textbox').css("background-color", "#f9f2f4");
-                } else {
-                    $('#teststring-textbox').css("background-color", "#fcf8e3");
-                }
-
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').html($('#'+rand_div).html());
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alerts_div = "";
@@ -159,11 +149,18 @@ function match_patterns() {
                     + '</div>');
                 $('#'+rand_div).append(alerts_div);
                 $('#result_alerts').empty();
-                $('#result_alerts').html($('#'+rand_div).html());
             },
         });
-
     });
+    if (number_of_green_patterns == data.pattern_nb) {
+        // all patterns are matching, show the textbox as green
+        $('#teststring-textbox').css("background-color", "#dff0d8");
+    } else if (number_of_green_patterns == 0) {
+        $('#teststring-textbox').css("background-color", "#f9f2f4");
+    } else {
+        $('#teststring-textbox').css("background-color", "#fcf8e3");
+    }
+    $('#result_alerts').html($('#'+rand_div).html());
 }
 
 </script>
