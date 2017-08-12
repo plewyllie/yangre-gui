@@ -6,9 +6,11 @@ import config
 @app.route('/', methods=['GET','POST'])
 @app.route('/index', methods=['GET','POST'])
 def index():
-        return render_template('index.html')
-                                #title='Home',
-                                #user=user)
+    return render_template('index.html')
+
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
 
 @app.route('/yangre', methods=['GET','POST'])
 def yangre():
@@ -43,7 +45,8 @@ def yangre():
     if w3c_input_obj.returncode == 1:
         w3c_input_result = -1 # I used -1 as error code
 
-    return jsonify({'w3cgrep_result' : w3c_input_result,
+    return jsonify({'pattern_nb' : request.form['pattern_nb'],
+                    'w3cgrep_result' : w3c_input_result,
                     'w3cgrep_output' : w3c_input_obj.stdout,
                     'yangre_result' : yangre_input_obj.returncode,
                     'yangre_output': yangre_input_obj.stdout });

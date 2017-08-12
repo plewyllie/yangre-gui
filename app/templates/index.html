@@ -3,8 +3,6 @@
 
 {% block content %}
 
-<!-- <p class="lead"> Yangre matches on W3C regexes </p> -->
-
 <div class=container>
     <div class="row">
         <div id="pattern_inputs" class="col-xs-10">
@@ -87,13 +85,13 @@ $('#pattern_inputs').on('input', function() {
 });
 
 function match_patterns() {
-    //$('#result_alerts').empty(); // empty the results
-
     /* generating a random div ID to store information from async AJAX calls */
     var rand_div = Math.random() * 100000000000000000;
     $('#data-divs').html('<div id="' + rand_div + '"></div>');
+    //$('#'+rand_div).append("<h3> Results </h3>");
 
-    var patternnb = 0;
+    var number_of_green_patterns = 0; // used to check if all patterns match
+
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
@@ -102,85 +100,66 @@ function match_patterns() {
             url: "/yangre",
             data: {
                 pattern: current_textbox.val(),
+                pattern_nb: current_textbox.attr('id').substr(-1),
                 content: $('#teststring-textbox').val(),
                 inverted: current_textbox.attr('inverted') // inverted match or not
             },
             success: function(data) {
                 var alerts_div = "";
-                patternnb++;
                 var result = data.w3cgrep_result + data.yangre_result;
                 if (result == 0) { // we have a match, green background
-                    current_textbox.css("background-color", "#dff0d8");
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#dff0d8");
+                    number_of_green_patterns++;
                 } else if (result == 2) { // no match, red
-                    current_textbox.css("background-color", "#f9f2f4");
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#f9f2f4");
                 } else { // different results, orange
-                    current_textbox.css("background-color", "#fcf8e3");
-                }
-                if (result != 0) { // if not all match, add a warning
-                    if (!($('#nomatch_warn').length)) {
-                        if ($('.pattern-textbox').length == 1) {
-                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
-                                + 'The pattern is not matching'
-                                + '</div>');
-                        } else {
-                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
-                                + 'Not all patterns are matching'
-                                + '</div>');
-                        }
-                    }
-                    $('#teststring-textbox').css("background-color", "#fcf8e3");
-                } else {
-                    $('#teststring-textbox').css("background-color", "#dff0d8");
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#fcf8e3");
                 }
 
                 // adding outputs in alert zone
-                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
-
-                if (data.w3cgrep_result == 0)
-                    alerts_div += ('<div class="alert alert-success" role="alert">'
-                    + '<b>W3CGREP</b> matches'
-                    + '</div>');
-                else if (data.w3cgrep_result == 1)
+                if (data.w3cgrep_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
-                        + '<b>W3CGREP</b> does not match'
+                        + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> does not match'
                         + '</div>');
-                else
+                else if (data.w3cgrep_result == 2)
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
-                        + '<b>W3CGREP</b> encountered an error'
+                        + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> encountered an error'
                         + '<p>' + data.w3cgrep_output + '</p>'
                         + '</div>');
-                if (data.yangre_result == 0)
-                    alerts_div += ('<div class="alert alert-success" role="alert">'
-                    + '<b>YANGRE</b> matches'
-                    + '</div>');
-                else if (data.yangre_result == 1)
+                if (data.yangre_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
-                        + '<b>YANGRE</b> does not match'
+                        + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> does not match'
                         + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
-                else
+                else if (data.w3cgrep_result == 2)
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
-                        + '<b>YANGRE</b> encountered an error'
+                        + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> encountered an error'
                         + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
 
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').empty(); // empty the results, in case we have other async calls fighting for this space
                 $('#result_alerts').html($('#'+rand_div).html());
+
+                if (number_of_green_patterns == data.pattern_nb) {
+                    // all patterns are matching, show the textbox as green
+                    $('#teststring-textbox').css("background-color", "#dff0d8");
+                    $('#result_alerts').html('<div class="alert alert-success" role="alert"><p>All patterns are matching</p></div>');
+                } else if (number_of_green_patterns == 0) {
+                    $('#teststring-textbox').css("background-color", "#f9f2f4");
+                } else {
+                    $('#teststring-textbox').css("background-color", "#fcf8e3");
+                }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                patternnb++;
                 alerts_div = "";
-                alerts_div += ('<h3>Pattern ' + patternnb + ' results</h3>');
+                alerts_div += ('<h3>Backend error</h3>');
                 alerts_div += ('<div class="alert alert-warning" role="alert">'
                     + '<p><b>Server ERROR</b>: Status = ' + textStatus + ', ' + 'error thrown: ' + errorThrown + '</p>'
                     + '</div>');
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').empty();
                 $('#result_alerts').html($('#'+rand_div).html());
             },
         });
-
     });
 }
 
