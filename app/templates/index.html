@@ -116,26 +116,8 @@ function match_patterns() {
                 } else { // different results, orange
                     current_textbox.css("background-color", "#fcf8e3");
                 }
-                if (result != 0) { // if not all match, add a warning
-                    if (!($('#nomatch_warn').length)) {
-                        if ($('.pattern-textbox').length == 1) {
-                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
-                                + 'The pattern is not matching'
-                                + '</div>');
-                        } else {
-                            $('#'+rand_div).prepend('<div id="nomatch_warn" class="alert alert-warning" role="alert">'
-                                + 'Not all patterns are matching'
-                                + '</div>');
-                        }
-                    }
-                    $('#teststring-textbox').css("background-color", "#fcf8e3");
-                } else {
-                    $('#teststring-textbox').css("background-color", "#dff0d8");
-                }
 
                 // adding outputs in alert zone
-                alerts_div += ('<h3>Pattern ' + data.pattern_nb + ' results</h3>');
-
                 if (data.w3cgrep_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>Pattern' + data.pattern_nb + ' W3CGREP</b> does not match'
