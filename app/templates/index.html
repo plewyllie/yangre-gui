@@ -97,13 +97,12 @@ function match_patterns() {
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
-        alert(current_textbox.attr('id')[-1]);
         $.ajax({
             type: "POST",
             url: "/yangre",
             data: {
                 pattern: current_textbox.val(),
-                pattern_nb: current_textbox.attr('id')[-1],
+                pattern_nb: current_textbox.attr('id').substr(-1),
                 content: $('#teststring-textbox').val(),
                 inverted: current_textbox.attr('inverted') // inverted match or not
             },
