@@ -92,7 +92,7 @@ function match_patterns() {
     /* generating a random div ID to store information from async AJAX calls */
     var rand_div = Math.random() * 100000000000000000;
     $('#data-divs').html('<div id="' + rand_div + '"></div>');
-    $('#'+rand_div).append("<h3> Results </h3>");
+    //$('#'+rand_div).append("<h3> Results </h3>");
 
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
