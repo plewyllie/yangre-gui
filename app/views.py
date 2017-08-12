@@ -6,9 +6,11 @@ import config
 @app.route('/', methods=['GET','POST'])
 @app.route('/index', methods=['GET','POST'])
 def index():
-        return render_template('index.html')
-                                #title='Home',
-                                #user=user)
+    return render_template('index.html')
+
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
 
 @app.route('/yangre', methods=['GET','POST'])
 def yangre():

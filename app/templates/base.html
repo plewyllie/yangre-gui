@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
     <title>YANG W3C Regex Expression Validator</title>
-    {% endif %}
     <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/static/css/sticky-footer.css" rel="stylesheet" media="screen">
     <link href="/static/css/general.css" rel="stylesheet" media="screen">
@@ -18,7 +13,12 @@
 <body>
     <div class="container">
     <div class="page-header">
-        <h3>YANG W3C Regex Expression Validator</h3>
+        <h3>YANG W3C Regex Expression Validator
+            <div style="float:right">
+                <a href="/" class="btn btn-primary" role="button">Home</a>
+                <a href="/about" class="btn btn-primary" role="button">About</a>
+            </div>
+        </h3>
     </div>
     </div>
     {% block content %}{% endblock %}
