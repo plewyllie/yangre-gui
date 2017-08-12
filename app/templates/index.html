@@ -93,10 +93,12 @@ function match_patterns() {
     //$('#'+rand_div).append("<h3> Results </h3>");
 
     var number_of_green_patterns = 0; // used to check if all patterns match
+    var number_of_patterns = 0;
 
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
+        number_of_patterns++;
         $.ajax({
             type: "POST",
             url: "/yangre",
@@ -152,7 +154,7 @@ function match_patterns() {
             },
         });
     });
-    if (number_of_green_patterns == data.pattern_nb) {
+    if (number_of_green_patterns == number_of_patterns) {
         // all patterns are matching, show the textbox as green
         $('#teststring-textbox').css("background-color", "#dff0d8");
     } else if (number_of_green_patterns == 0) {
