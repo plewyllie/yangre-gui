@@ -112,6 +112,7 @@ function match_patterns() {
                 if (result == 0) { // we have a match, green background
                     $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#dff0d8");
                     if ($('#teststring-textbox').css("background-color").toLowerCase() != "#f9f2f4") {
+                        console.log($('#teststring-textbox').css("background-color").toLowerCase());
                         // only go go green if not already yellow (means another is not matching)
                         $('#teststring-textbox').css("background-color", "#dff0d8");
                     }
