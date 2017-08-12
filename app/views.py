@@ -43,9 +43,6 @@ def yangre():
     if w3c_input_obj.returncode == 1:
         w3c_input_result = -1 # I used -1 as error code
 
-    print (config.YANGGRE_PATH, "-p", str(request.form['pattern']), "\""+ str(request.form['content'] + "\""))
-    #print (config.W3CGREP_PATH, str(request.form['pattern']), )
-
     return jsonify({'w3cgrep_result' : w3c_input_result,
                     'w3cgrep_output' : w3c_input_obj.stdout,
                     'yangre_result' : yangre_input_obj.returncode,

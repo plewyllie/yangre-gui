@@ -73,7 +73,6 @@ $("#pattern_inputs").on('click', '.btn', function() {
 
         // setting the pattern to be inverted
         var patternid = $(this).attr('id').replace("invert-pattern-", "pattern-textbox-");
-        console.log($('#' + patternid))
         $('#' + patternid).attr("inverted", "false");
     }
     match_patterns();
@@ -110,7 +109,6 @@ function match_patterns() {
                 var alerts_div = "";
                 patternnb++;
                 var result = data.w3cgrep_result + data.yangre_result;
-                console.log(result);
                 if (result == 0) { // we have a match, green background
                     current_textbox.css("background-color", "#dff0d8");
                 } else if (result == 2) { // no match, red
