@@ -88,7 +88,7 @@ $('#pattern_inputs').on('input', function() {
 });
 
 function match_patterns() {
-    $('#result_alerts').empty(); // empty the results
+    //$('#result_alerts').empty(); // empty the results
 
     /* generating a random div ID to store information from async AJAX calls */
     var rand_div = Math.random() * 100000000000000000;
@@ -109,7 +109,8 @@ function match_patterns() {
             success: function(data) {
                 var alerts_div = "";
                 patternnb++;
-                var result = data.w3cgrep_result + data.yangre_result
+                var result = data.w3cgrep_result + data.yangre_result;
+                alert(result);
                 if (result == 0) { // we have a match, green background
                     current_textbox.css("background-color", "#dff0d8");
                 } else if (result == 2) { // no match, red
