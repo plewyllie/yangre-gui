@@ -87,8 +87,6 @@ $('#pattern_inputs').on('input', function() {
 });
 
 function match_patterns() {
-    //$('#result_alerts').empty(); // empty the results
-
     /* generating a random div ID to store information from async AJAX calls */
     var rand_div = Math.random() * 100000000000000000;
     $('#data-divs').html('<div id="' + rand_div + '"></div>');
@@ -151,7 +149,6 @@ function match_patterns() {
                 }
 
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').empty(); // empty the results, in case we have other async calls fighting for this space
                 $('#result_alerts').html($('#'+rand_div).html());
             },
             error: function(jqXHR, textStatus, errorThrown) {
