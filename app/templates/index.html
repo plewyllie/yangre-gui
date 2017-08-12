@@ -94,10 +94,11 @@ function match_patterns() {
     $('#data-divs').html('<div id="' + rand_div + '"></div>');
     //$('#'+rand_div).append("<h3> Results </h3>");
 
+    var number_of_green_patterns = 0; // used to check if all patterns match
+    
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
-        var number_of_green_patterns = 0; // used to check if all patterns match
         $.ajax({
             type: "POST",
             url: "/yangre",
