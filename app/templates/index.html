@@ -157,11 +157,9 @@ function match_patterns() {
                     + '<p><b>Server ERROR</b>: Status = ' + textStatus + ', ' + 'error thrown: ' + errorThrown + '</p>'
                     + '</div>');
                 $('#'+rand_div).append(alerts_div);
-                $('#result_alerts').empty();
                 $('#result_alerts').html($('#'+rand_div).html());
             },
         });
-
     });
 }
 
