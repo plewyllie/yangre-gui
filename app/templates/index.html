@@ -97,6 +97,7 @@ function match_patterns() {
     $('.pattern-textbox').each(function() {
         // for every pattern, will do a REST call to see if it matches test string
         var current_textbox = $(this);
+        alert(current_textbox.attr('id')[-1]);
         $.ajax({
             type: "POST",
             url: "/yangre",
