@@ -106,17 +106,8 @@ function match_patterns() {
             },
             success: function(data) {
                 var alerts_div = "";
-                var result = data.w3cgrep_result + data.yangre_result;
-                if (result == 0) { // we have a match, green background
-                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#dff0d8");
-                    number_of_green_patterns++;
-                } else if (result == 2) { // no match, red
-                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#f9f2f4");
-                } else { // different results, orange
-                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#fcf8e3");
-                }
 
-                // adding outputs in alert zone
+                               // adding outputs in alert zone
                 if (data.w3cgrep_result == 1)
                     alerts_div += ('<div class="alert alert-danger" role="alert">'
                         + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> does not match'
@@ -136,6 +127,28 @@ function match_patterns() {
                         + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> encountered an error'
                         + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
+                
+                var result = data.w3cgrep_result + data.yangre_result;
+                if (result == 0) { // we have a match, green background
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#dff0d8");
+                    number_of_green_patterns++;
+                } else if (result == 2) { // no match, red
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#f9f2f4");
+                } else { // different results, orange
+                    $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#fcf8e3");
+                    // add green message if one of the two is matching
+                    if (data.yangre_result == 0)
+                        alerts_div += ('<div class="alert alert-success" role="alert">'
+                            + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> does match'
+                            + '<p>' + data.yangre_output + '</p>'
+                            + '</div>'); 
+                    if (data.w3cgrep_result == 0)
+                        alerts_div += ('<div class="alert alert-success" role="alert">'
+                            + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> does match'
+                            + '</div>');
+                }
+
+               
 
                 $('#'+rand_div).append(alerts_div);
                 $('#result_alerts').html($('#'+rand_div).html());
