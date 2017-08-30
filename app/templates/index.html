@@ -122,7 +122,7 @@ function match_patterns() {
                         + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> does not match'
                         + '<p>' + data.yangre_output + '</p>'
                         + '</div>');
-                else if (data.w3cgrep_result == 2)
+                else if (data.yangre_result == 255)
                     alerts_div += ('<div class="alert alert-warning" role="alert">'
                         + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> encountered an error'
                         + '<p>' + data.yangre_output + '</p>'
