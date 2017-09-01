@@ -38,6 +38,7 @@ def yangre():
     else:
         # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
         # in python 3.6 this changes to encoding='utf8'
+        print("Passing", config.YANGGRE_PATH, "-p", "\"" + str(request.form['pattern']) + "\"", str(request.form['content']))
         yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", "\"" + str(request.form['pattern']) + "\"",
                                           str(request.form['content'])],
                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
