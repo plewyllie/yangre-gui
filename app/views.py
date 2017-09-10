@@ -4,18 +4,18 @@ from flask import render_template, jsonify, request
 from app import app
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route(PREFIX + '/', methods=['GET', 'POST'])
+@app.route(PREFIX + '/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
 
-@app.route('/about', methods=['GET'])
+@app.route(PREFIX + '/about', methods=['GET'])
 def about():
     return render_template('about.html')
 
 
-@app.route('/yangre', methods=['GET', 'POST'])
+@app.route(PREFIX + '/yangre', methods=['GET', 'POST'])
 def yangre():
     # writing the test string to file, as required by w3cgrep
     with open("w3c_input", "w") as testfile:
