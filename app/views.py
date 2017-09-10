@@ -18,6 +18,12 @@ def yangre():
         f.write(request.form['content'])
         f.write("\n")
 
+    # An unquoted string is any sequence of characters that does not
+    # contain any space, tab, carriage return, or line feed characters, a
+    # single or double quote character, a semicolon (";"), braces ("{" or
+    # "}"), or comment sequences ("//", "/*", or "*/").
+    
+
     # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
     # in python 3.6 this changes to encoding='utf8'
     w3c_input_obj = subprocess.run([config.W3CGREP_PATH,str(request.form['pattern']),"w3c_input"],
@@ -30,6 +36,7 @@ def yangre():
     yangre_input_obj = {}
     if request.form['inverted'] == "true":
         w3c_input_result = int(not(w3c_input_result))
+
         # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
         # in python 3.6 this changes to encoding='utf8'
         yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']), "-i",
@@ -39,7 +46,7 @@ def yangre():
         # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
         # in python 3.6 this changes to encoding='utf8'
         print("Passing", config.YANGGRE_PATH, "-p", str(request.form['pattern']), str(request.form['content']))
-        yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", "'" + str(request.form['pattern'] + "'"),
+        yangre_input_obj = subprocess.run([config.YANGGRE_PATH, "-p", str(request.form['pattern']),
                                           str(request.form['content'])],
                                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True);
 
