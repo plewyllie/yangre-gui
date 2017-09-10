@@ -8,3 +8,4 @@ yangre
 __pycache__/config.cpython-36.pyc
 app/__pycache__/__init__.cpython-36.pyc
 app/__pycache__/views.cpython-36.pyc
+.vscode/settings.json
