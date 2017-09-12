@@ -27,7 +27,7 @@ def yangre():
     # writing the test string to another file for yangre
     yangreinput_filename = "yangre_input" + request.form['pattern_nb']
     with open(yangreinput_filename, "w") as yangrefile:
-        yangrefile.write('"' + str(request.form['pattern'] + '"') 
+        yangrefile.write('"' + str(request.form['pattern'] + '"'))
         yangrefile.write("\n\n")
         yangrefile.write(str(request.form['content']))
 
