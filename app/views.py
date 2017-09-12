@@ -68,8 +68,8 @@ def yangre():
         w3c_input_result = -1  # I used -1 as error code
 
     # clean up files
-    #os.remove(w3cinput_filename)
-    #os.remove(yangreinput_filename)
+    os.remove(w3cinput_filename)
+    os.remove(yangreinput_filename)
 
     return jsonify({
         'pattern_nb': request.form['pattern_nb'],
