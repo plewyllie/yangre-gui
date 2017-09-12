@@ -28,7 +28,7 @@ def yangre():
     yangreinput_filename = "yangre_input" + request.form['pattern_nb']
     with open(yangreinput_filename, "w") as yangrefile:
         yangrefile.write(request.form['pattern'])
-        yangrefile.write("\n")
+        yangrefile.write("\n\n")
         yangrefile.write('"' + str(request.form['content']) + '"')
 
     # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
