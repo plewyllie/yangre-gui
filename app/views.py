@@ -69,7 +69,7 @@ def yangre():
 
     # clean up files
     os.remove(w3cinput_filename)
-    os.remove(yangreinput_filename)
+    #os.remove(yangreinput_filename)
 
     return jsonify({
         'pattern_nb': request.form['pattern_nb'],
