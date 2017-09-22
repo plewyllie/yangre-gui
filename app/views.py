@@ -8,7 +8,8 @@ from app import app
 @app.route(config.PREFIX + '/', methods=['GET', 'POST'])
 @app.route(config.PREFIX + '/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template(
+        'index.html', title="YANG Regex Expression Validator")
 
 
 @app.route(config.PREFIX + '/about', methods=['GET'])
@@ -18,7 +19,8 @@ def about():
 
 @app.route(config.PREFIX + '/w3cgrep', methods=['GET'])
 def w3cgrep():  # loads the w3cgrep validator
-    return render_template('w3cgrep.html')
+    return render_template(
+        'w3cgrep.html', title="W3C Regex Expression Validator")
 
 
 @app.route(config.PREFIX + '/yangre', methods=['GET', 'POST'])
