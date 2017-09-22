@@ -16,6 +16,11 @@ def about():
     return render_template('about.html')
 
 
+@app.route(config.PREFIX + '/w3cgrep', methods=['GET'])
+def w3cgrep():  # loads the w3cgrep validator
+    return render_template('w3cgrep.html')
+
+
 @app.route(config.PREFIX + '/yangre', methods=['GET', 'POST'])
 def yangre():
     # writing the test string to file, as required by w3cgrep
