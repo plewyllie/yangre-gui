@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
 <title>YANG W3C Regex Expression Validator</title>
+{% endif %}
 <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/static/css/sticky-footer.css" rel="stylesheet" media="screen">
 <link href="/static/css/general.css" rel="stylesheet" media="screen">
@@ -15,16 +19,13 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h3>YANG W3C Regex Expression Validator
+            <h3>{% if title %}{{ title }}{% else %}YANG W3C Regex Expression Validator{% endif %}
                 <div style="float:right">
-                    <a href="/yangre" class="btn btn-primary" role="button">Home</a>
-                    <a href="/yangre/about" class="btn btn-primary" role="button">About</a>
+                    <a href="/yangre" class="btn btn-primary" role="button" id="yang_btn">YANG Validator</a>
+                    <a href="/yangre/w3cgrep" class="btn btn-primary" role="button" id="w3c_btn">W3C Validator</a>
+                    <a href="/yangre/about" class="btn btn-primary" role="button" id="about_btn">About</a>
                 </div>
             </h3>
-            <div class="alert alert-warning" role="alert">
-                <b>Work in progress</b>: We are busy bug fixing quoting issues with the YANGRE validator. For now, expect
-                mismatches when using complex regular expressions. Thank you for understanding
-            </div>
         </div>
     </div>
     {% block content %}{% endblock %}

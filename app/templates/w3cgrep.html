@@ -30,7 +30,7 @@
 
 
 <script>
-    $("#yang_btn").attr('class', "btn btn-info");
+    $("#w3c_btn").attr('class', "btn btn-info");
     var patterncnt = 2;
     $('#add_pattern_btn').bind('click', function () {
         // Add pattern field
@@ -97,7 +97,7 @@
             var current_textbox = $(this);
             $.ajax({
                 type: "POST",
-                url: "/yangre/yangre",
+                url: "/yangre/w3c",
                 data: {
                     pattern: current_textbox.val(),
                     pattern_nb: current_textbox.attr('id').substr(-1),
@@ -108,18 +108,17 @@
                     var alerts_div = "";
 
                     // adding outputs in alert zone
-                    if (data.yangre_result == 1)
+                    if (data.w3cgrep_result == 1)
                         alerts_div += ('<div class="alert alert-danger" role="alert">'
-                            + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> does not match'
-                            + '<p>' + data.yangre_output + '</p>'
+                            + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> does not match'
                             + '</div>');
-                    else if (data.yangre_result == 255)
+                    else if (data.w3cgrep_result == 2 || data.w3cgrep_result == -1)
                         alerts_div += ('<div class="alert alert-warning" role="alert">'
-                            + '<b>Pattern ' + data.pattern_nb + ' YANGRE</b> encountered an error'
-                            + '<p>' + data.yangre_output + '</p>'
+                            + '<b>Pattern ' + data.pattern_nb + ' W3CGREP</b> encountered an error'
+                            + '<p>' + data.w3cgrep_output + '</p>'
                             + '</div>');
 
-                    var result = data.yangre_result;
+                    var result = data.w3cgrep_result;
                     if (result == 0) { // we have a match, green background
                         $("#pattern-textbox-" + data.pattern_nb).css("background-color", "#dff0d8");
                         number_of_green_patterns++;
