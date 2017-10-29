@@ -1,0 +1,90 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the Yangre API",
+    "version" : "1.0.0",
+    "title" : "Yangre W3Cre API",
+    "contact" : {
+      "email" : "pilewyll@cisco.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/plewyllie/yangre/1.0.0",
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/yangre" : {
+      "post" : {
+        "summary" : "validates a yang regexp",
+        "description" : "By passing in the appropriate options, you can validate a yang regular expression\n",
+        "operationId" : "validateYang",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "yangRegex",
+          "description" : "Yang regular expression to validate",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/InventoryItem"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "json response with the results"
+          }
+        }
+      }
+    },
+    "/w3c" : {
+      "post" : {
+        "summary" : "validates a w3c regexp",
+        "description" : "By passing in the appropriate options, you can validate a W3C regular expression\n",
+        "operationId" : "validateW3C",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "yangRegex",
+          "description" : "W3C regular expression to validate",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/InventoryItem"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "json response with the results"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "InventoryItem" : {
+      "type" : "object",
+      "required" : [ "content", "inverted", "pattern" ],
+      "properties" : {
+        "inverted" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "pattern" : {
+          "type" : "string",
+          "example" : "[a-z]*"
+        },
+        "pattern_nb" : {
+          "type" : "integer"
+        },
+        "content" : {
+          "type" : "string",
+          "format" : "string",
+          "example" : "aaa"
+        }
+      }
+    }
+  }
+}
