@@ -25,17 +25,19 @@ def w3cgrep():  # loads the w3cgrep validator
 
 @app.route(config.APIPREFIX + '/w3c', methods=['GET', 'POST'])
 def w3c():  # JSON API to validate W3C input
+    req_data = request.get_json()
+
     # writing the test string to file, as required by w3cgrep
-    w3cinput_filename = "w3c_input" + request.form['pattern_nb']
+    w3cinput_filename = "w3c_input" + str(req_data['pattern_nb'])
     with open(w3cinput_filename, "w") as testfile:
-        testfile.write(request.form['content'])
+        testfile.write(req_data['content'])
         testfile.write("\n")
 
     # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
     # in python 3.6 this changes to encoding='utf8'
     w3c_input_obj = subprocess.run(
         [config.W3CGREP_PATH,
-         str(request.form['pattern']), w3cinput_filename],
+         str(req_data['pattern']), w3cinput_filename],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         universal_newlines=True)
@@ -44,7 +46,7 @@ def w3c():  # JSON API to validate W3C input
     else:
         w3c_input_result = 0
 
-    if request.form['inverted'] == "true":
+    if req_data['inverted'] == "true":
         w3c_input_result = int(not w3c_input_result)
 
     if w3c_input_obj.returncode == 1:
@@ -54,7 +56,7 @@ def w3c():  # JSON API to validate W3C input
     os.remove(w3cinput_filename)
 
     return jsonify({
-        'pattern_nb': request.form['pattern_nb'],
+        'pattern_nb': req_data['pattern_nb'],
         'w3cgrep_result': w3c_input_result,
         'w3cgrep_output': w3c_input_obj.stdout
     })

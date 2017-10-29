@@ -95,15 +95,17 @@
         $('.pattern-textbox').each(function () {
             // for every pattern, will do a REST call to see if it matches test string
             var current_textbox = $(this);
+            var json_request_data = {
+                "inverted": current_textbox.attr('inverted'),
+                "pattern_nb": current_textbox.attr('id').substr(-1),
+                "pattern": current_textbox.val(),
+                "content": $('#teststring-textbox').val()
+            }
             $.ajax({
                 type: "POST",
-                url: "/yangre/yangre",
-                data: {
-                    pattern: current_textbox.val(),
-                    pattern_nb: current_textbox.attr('id').substr(-1),
-                    content: $('#teststring-textbox').val(),
-                    inverted: current_textbox.attr('inverted') // inverted match or not
-                },
+                url: "/yangre/v1/yangre",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json_request_data),
                 success: function (data) {
                     var alerts_div = "";
 
@@ -153,9 +155,7 @@
         });
     }
 
-</script>
-
-{% endblock %}
+</script> {% endblock %}
 
 <!--
 
