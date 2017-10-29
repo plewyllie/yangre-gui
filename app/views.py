@@ -23,7 +23,7 @@ def w3cgrep():  # loads the w3cgrep validator
         'w3cgrep.html', title="W3C Regex Expression Validator")
 
 
-@app.route(config.PREFIX + '/w3c', methods=['GET', 'POST'])
+@app.route(config.APIPREFIX + '/w3c', methods=['GET', 'POST'])
 def w3c():  # JSON API to validate W3C input
     # writing the test string to file, as required by w3cgrep
     w3cinput_filename = "w3c_input" + request.form['pattern_nb']
@@ -60,17 +60,19 @@ def w3c():  # JSON API to validate W3C input
     })
 
 
-@app.route(config.PREFIX + '/yangre', methods=['GET', 'POST'])
+@app.route(config.APIPREFIX + '/yangre', methods=['POST'])
 def yangre():  # JSON API to validate YANG input
+    req_data = request.get_json()
+
     # writing the test string to another file for yangre
-    yangreinput_filename = "yangre_input" + request.form['pattern_nb']
+    yangreinput_filename = "yangre_input" + req_data['pattern_nb']
     with open(yangreinput_filename, "w") as yangrefile:
-        yangrefile.write(str(request.form['pattern']))
+        yangrefile.write(str(req_data['pattern']))
         yangrefile.write("\n\n")
-        yangrefile.write(str(request.form['content']))
+        yangrefile.write(str(req_data['content']))
 
     yangre_input_obj = {}
-    if request.form['inverted'] == "true":
+    if req_data['inverted'] == "true":
         # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
         # in python 3.6 this changes to encoding='utf8'
         yangre_input_obj = subprocess.run(
@@ -91,7 +93,7 @@ def yangre():  # JSON API to validate YANG input
     os.remove(yangreinput_filename)
 
     return jsonify({
-        'pattern_nb': request.form['pattern_nb'],
+        'pattern_nb': req_data['pattern_nb'],
         'yangre_result': yangre_input_obj.returncode,
         'yangre_output': yangre_input_obj.stdout
     })
