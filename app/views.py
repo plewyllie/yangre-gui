@@ -65,7 +65,7 @@ def yangre():  # JSON API to validate YANG input
     req_data = request.get_json()
 
     # writing the test string to another file for yangre
-    yangreinput_filename = "yangre_input" + req_data['pattern_nb']
+    yangreinput_filename = "yangre_input" + str(req_data['pattern_nb'])
     with open(yangreinput_filename, "w") as yangrefile:
         yangrefile.write(str(req_data['pattern']))
         yangrefile.write("\n\n")
