@@ -24,7 +24,7 @@ def w3cgrep():  # loads the w3cgrep validator
 
 
 @app.route(config.PREFIX + '/v1', methods=['GET'])
-def w3cgrep():  # loads the SWAGGER API
+def swagger():  # loads the SWAGGER API
     return render_template('../../dist/index.html')
 
 
