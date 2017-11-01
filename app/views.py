@@ -23,6 +23,11 @@ def w3cgrep():  # loads the w3cgrep validator
         'w3cgrep.html', title="W3C Regex Expression Validator")
 
 
+@app.route(config.PREFIX + '/v1', methods=['GET'])
+def w3cgrep():  # loads the SWAGGER API
+    return render_template('../../dist/index.html')
+
+
 @app.route(config.APIPREFIX + '/w3c', methods=['GET', 'POST'])
 def w3c():  # JSON API to validate W3C input
     req_data = request.get_json()
