@@ -12,8 +12,8 @@
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/plewyllie/yangre/1.0.0",
+  "host" : "yangcatalog.org:5000",
+  "basePath" : "/yangre/v1",
   "schemes" : [ "https", "http" ],
   "paths" : {
     "/yangre" : {
@@ -70,19 +70,22 @@
       "properties" : {
         "inverted" : {
           "type" : "boolean",
-          "example" : false
+          "example" : false,
+          "description" : "Set to 1 if the expression match should be inverted"
         },
         "pattern" : {
           "type" : "string",
           "example" : "[a-z]*"
         },
         "pattern_nb" : {
-          "type" : "integer"
+          "type" : "integer",
+          "description" : "Optional, this will be returned along with the response. This is used for the GUI."
         },
         "content" : {
           "type" : "string",
           "format" : "string",
-          "example" : "aaa"
+          "example" : "aaa",
+          "description" : "The content to validate"
         }
       }
     }
