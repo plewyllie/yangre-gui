@@ -1,9 +1,8 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "This is the Yangre API",
     "version" : "1.0.0",
-    "title" : "Yangre W3Cre API",
+    "title" : "YANGre W3Cre API",
     "contact" : {
       "email" : "pilewyll@cisco.com"
     },
@@ -29,12 +28,15 @@
           "description" : "Yang regular expression to validate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/InventoryItem"
+            "$ref" : "#/definitions/RequestParameters"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "json response with the results"
+            "description" : "json response with the results",
+            "schema" : {
+              "$ref" : "#/definitions/ResponseParametersYang"
+            }
           }
         }
       }
@@ -52,19 +54,22 @@
           "description" : "W3C regular expression to validate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/InventoryItem"
+            "$ref" : "#/definitions/RequestParameters"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "json response with the results"
+            "description" : "json response with the results",
+            "schema" : {
+              "$ref" : "#/definitions/ResponseParametersW3C"
+            }
           }
         }
       }
     }
   },
   "definitions" : {
-    "InventoryItem" : {
+    "RequestParameters" : {
       "type" : "object",
       "required" : [ "content", "inverted", "pattern" ],
       "properties" : {
@@ -83,9 +88,42 @@
         },
         "content" : {
           "type" : "string",
-          "format" : "string",
           "example" : "aaa",
           "description" : "The content to validate"
+        }
+      }
+    },
+    "ResponseParametersYang" : {
+      "type" : "object",
+      "properties" : {
+        "pattern_nb" : {
+          "type" : "integer",
+          "description" : "Matching the request's pattern_nb"
+        },
+        "yangre_output" : {
+          "type" : "string",
+          "description" : "The output (if any) if the yangre validator"
+        },
+        "yangre_result" : {
+          "type" : "integer",
+          "description" : "0 -> match\n 1 -> no match\n 255 -> error"
+        }
+      }
+    },
+    "ResponseParametersW3C" : {
+      "type" : "object",
+      "properties" : {
+        "pattern_nb" : {
+          "type" : "integer",
+          "description" : "Matching the request's pattern_nb"
+        },
+        "w3cgrep_output" : {
+          "type" : "string",
+          "description" : "The output (if any) if the yangre validator"
+        },
+        "w3cgrep_result" : {
+          "type" : "integer",
+          "description" : "0 -> match\n 1 -> no match\n -1 -> error"
         }
       }
     }
