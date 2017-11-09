@@ -1,5 +1,5 @@
 import os
-os.environ['LD_LIBRARY_PATH'] = "/usr/local/lib64"
+os.environ['LD_LIBRARY_PATH'] = "/home/pilewyll/libyang-prod/build"
 
 YANGGRE_PATH = "/home/pilewyll/libyang-prod/build/yangre"
 #W3CGREP_PATH = "/Users/pilewyll/yangre-gui/w3cgrep"

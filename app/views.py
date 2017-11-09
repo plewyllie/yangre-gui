@@ -69,9 +69,6 @@ def w3c():  # JSON API to validate W3C input
 
 @app.route(config.APIPREFIX + '/yangre', methods=['POST'])
 def yangre():  # JSON API to validate YANG input
-
-    print("WHAAT", os.environ['LD_LIBRARY_PATH'])
-
     req_data = request.get_json()
 
     # writing the test string to another file for yangre
