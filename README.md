@@ -23,6 +23,14 @@ Note that this is not ideal for production. For use in a production environment,
 * Python 3.5
 * Flask
 
+## Docker
+The application can also be run using docker. In the docker folder, run
+```
+docker-compose build
+docker-compose up
+```
+Yangre is now available at http://localhost/yangre
+
 ## Resources
 * See [RFC 7950 section 9.4.5](https://tools.ietf.org/html/rfc7950#section-9.4.5) for details on the YANG regular expressions.
 * See [RFC 7950 section 6.1.3](https://tools.ietf.org/html/rfc7950#section-6.1.3) for information on quoting

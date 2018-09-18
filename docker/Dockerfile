@@ -3,7 +3,6 @@ MAINTAINER Pieter Lewyllie
 
 EXPOSE 5000
 
-
 RUN apt-get update
 RUN apt-get -y install clang
 RUN apt-get -y install cmake
