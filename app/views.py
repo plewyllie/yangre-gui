@@ -1,6 +1,7 @@
 import subprocess
 import os
 import config
+import uuid
 from flask import render_template, jsonify, request, send_from_directory
 from app import app
 
@@ -33,7 +34,8 @@ def w3c():  # JSON API to validate W3C input
     req_data = request.get_json()
 
     # writing the test string to file, as required by w3cgrep
-    w3cinput_filename = "w3c_input" + str(req_data['pattern_nb'])
+    #w3cinput_filename = "w3c_input" + str(req_data['pattern_nb'])
+    w3cinput_filename = "w3c_input" + uuid.uuid4()
     with open(w3cinput_filename, "w") as testfile:
         testfile.write(req_data['content'])
         testfile.write("\n")
