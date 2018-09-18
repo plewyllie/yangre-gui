@@ -34,7 +34,6 @@ def w3c():  # JSON API to validate W3C input
     req_data = request.get_json()
 
     # writing the test string to file, as required by w3cgrep
-    #w3cinput_filename = "w3c_input" + str(req_data['pattern_nb'])
     w3cinput_filename = "w3c_input" + uuid.uuid4()
     with open(w3cinput_filename, "w") as testfile:
         testfile.write(req_data['content'])
@@ -79,7 +78,7 @@ def yangre():  # JSON API to validate YANG input
     req_data = request.get_json()
 
     # writing the test string to another file for yangre
-    yangreinput_filename = "yangre_input" + str(req_data['pattern_nb'])
+    yangreinput_filename = "yangre_input" + uuid.uuid4()
     with open(yangreinput_filename, "w") as yangrefile:
         yangrefile.write(str(req_data['pattern']))
         yangrefile.write("\n\n")
