@@ -47,7 +47,7 @@
             $("#remove_pattern_btn").css('display', 'inline');
     });
 
-    $("#pattern_inputs_buttons").on('click', '#remove_pattern_btn', function () {
+    $("#pattern_inputs_buttons").unbind().on('click', '#remove_pattern_btn', function () {
         // Remove pattern field
         patterncnt--;
         $('#pattern-input-' + patterncnt).remove();
@@ -77,10 +77,10 @@
 
     });
 
-    $('#teststring-textbox').on('change keyup paste', function () {
+    $('#teststring-textbox').unbind().on('change keyup paste', function () {
         match_patterns(); // call match_patterns everytime a key is entered in textbox
     });
-    $('#pattern_inputs').on('input', function () {
+    $('#pattern_inputs').unbind().on('input', function () {
         match_patterns(); // call match_patterns everytime a key is entered in textbox
     });
 
