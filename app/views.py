@@ -58,7 +58,10 @@ def w3c():  # JSON API to validate W3C input
         w3c_input_result = -1  # I used -1 as error code
 
     # clean up files
-    os.remove(w3cinput_filename)
+    try:
+        os.remove(w3cinput_filename)
+    except FileNotFoundError:
+        print("Oops, file not found")
 
     return jsonify({
         'pattern_nb': req_data['pattern_nb'],
@@ -97,7 +100,10 @@ def yangre():  # JSON API to validate YANG input
             universal_newlines=True)
 
     # clean up files
-    os.remove(yangreinput_filename)
+    try:
+        os.remove(yangreinput_filename)
+    except FileNotFoundError:
+        print("Oops, file not found")
 
     return jsonify({
         'pattern_nb': req_data['pattern_nb'],
