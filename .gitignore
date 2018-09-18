@@ -11,3 +11,5 @@ app/__pycache__/views.cpython-36.pyc
 .vscode/settings.json
 app/static/.DS_Store
 app/.DS_Store
+.gitignore
+.vscode/
