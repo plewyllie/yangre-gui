@@ -38,6 +38,7 @@ def w3c():  # JSON API to validate W3C input
         testfile.write(req_data['content'])
         testfile.write("\n")
         testfile.flush()
+        os.fsync()
 
     # python 3.5 dependency. To get stdout as a string we need the universal_newlines=True parameter
     # in python 3.6 this changes to encoding='utf8'
@@ -82,6 +83,7 @@ def yangre():  # JSON API to validate YANG input
         yangrefile.write("\n\n")
         yangrefile.write(str(req_data['content']))
         yangrefile.flush()
+        os.fsync()
 
     yangre_input_obj = {}
     if req_data['inverted'] == "true":
