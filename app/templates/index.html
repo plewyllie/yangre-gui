@@ -56,7 +56,7 @@
         match_patterns(); // re-run the matching, to display correct results
     });
 
-    $("#pattern_inputs").on('click', '.btn', function () {
+    $("#pattern_inputs").unbind().on('click', '.btn', function () {
         // toggle invert match
         if ($(this).hasClass('btn-default')) {
             $(this).addClass('btn-info').removeClass('btn-default');
