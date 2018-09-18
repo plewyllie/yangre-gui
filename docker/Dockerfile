@@ -31,4 +31,4 @@ RUN apt-get -y install uwsgi-plugin-python3
 WORKDIR "/home/yangre-gui"
 CMD ["uwsgi", "--socket", "0.0.0.0:5000", \
                "--protocol", "uwsgi", \
-               "-w", "wsgi" ]
+               "-w", "wsgi:application" ]
