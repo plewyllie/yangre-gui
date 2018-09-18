@@ -1,3 +1,4 @@
+#Author: Pieter Lewyllie, pilewyll@cisco.com
 import os
 os.environ['LD_LIBRARY_PATH'] = "/usr/local/lib64:/home/libyang/build"
 
