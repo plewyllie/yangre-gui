@@ -1,6 +1,8 @@
 FROM ubuntu
 MAINTAINER Pieter Lewyllie
 
+EXPOSE 5000
+
 RUN apt-get update
 RUN apt-get -y install clang
 RUN apt-get -y install cmake
@@ -10,15 +12,23 @@ RUN cd /home; git clone https://github.com/CESNET/libyang.git
 RUN cd /home/libyang; mkdir build
 RUN cd /home/libyang/build; cmake ..; make; make install
 RUN cd /home; git clone https://github.com/plewyllie/yangre-gui.git
+# don't need git anymore
+RUN apt-get -y remove git
 
 RUN cd /home; mkdir w3cgrep
 # copy C file
 COPY w3cgrep.c /home/w3cgrep/.
-RUN apt-get install -y libxml2-dev
+RUN apt-get -y install libxml2-dev
 RUN cd /home/w3cgrep; clang w3cgrep.c -I/usr/include/libxml2 -lxml2 -o w3cgrep
 
-RUN apt-get install -y python3-pip
-RUN pip3 install flask
+RUN apt-get -y install python3-pip
+RUN apt-get -y install nginx
+RUN pip3 install uwsgi flask
+RUN apt-get -y install uwsgi-plugin-python3
+
 
 WORKDIR "/home/yangre-gui"
-CMD ["python3 run.py"]
+CMD ["uwsgi", "--socket", "0.0.0.0:5000", \
+               "--plugins", "python3", \
+               "--protocol", "uwsgi", \
+               "--wsgi", "main:application" ]
