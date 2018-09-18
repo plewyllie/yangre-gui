@@ -3,6 +3,7 @@ MAINTAINER Pieter Lewyllie
 
 EXPOSE 5000
 
+
 RUN apt-get update
 RUN apt-get -y install clang
 RUN apt-get -y install cmake
@@ -29,6 +30,5 @@ RUN apt-get -y install uwsgi-plugin-python3
 
 WORKDIR "/home/yangre-gui"
 CMD ["uwsgi", "--socket", "0.0.0.0:5000", \
-               "--plugins", "python3", \
                "--protocol", "uwsgi", \
-               "--wsgi", "main:application" ]
+               "-w", "wsgi" ]
